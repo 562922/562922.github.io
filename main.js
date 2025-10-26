@@ -41,13 +41,15 @@ function goToNextLesson() {
 
 function homepageCapterLink() {
     // Hide the link if the current page is chap1.html
-    if (currentLesson === 'les1') {
-        currentLessonLink.style.display = 'none';
+    if (currentLesson === 'les1.html') {
+        homepageLesson.style.display = 'none';
     } else {
         // Otherwise, make sure it's visible and points to the right place
-        currentLessonLink.style.display = 'inline';
+        homepageLesson.style.display = 'none';
+        homepageLesson.onclick = goToCurrentChapter;
     }
 }
+
 function lessonsCapterLink() {
     if (currentLesson === 'les1') {
         this.innerHTML = 'Start Lessons &rarr;';
