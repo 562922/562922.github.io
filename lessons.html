@@ -4,16 +4,21 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <link rel="javascript" href="main.js">
+  <div class="topnav">
+    <a class="fade-in" href="index.html">Home</a>
+    <a class="active" href="lessons.html">Lessons</a>
+    <!-- <img class="icon" src="" style="width: 40px; margin-left:10px; height:40px;"> -->
+  </div>
 </head>
 <div class="parallax">
 
   <body>
     <h1>Lessons</h1>
-    <h3>The proccess of building a website can be split into 4 main stages: Plan, Build, and Publish.
+    <p>The proccess of building a website can be split into 4 main stages: Plan, Build, and Publish.
       During the planning stage you plan out the website by making a site map and picking a coding environment.
       In the build stage you actually work on the website starting from a simple webpage and moving all the way to a
       fully dynamic website with javascript interactables.
-      And in the publish phase I will show you how to publish your site for free using github pages.</h3>
+      And in the publish phase I will show you how to publish your site for free using github pages.</p>
     <br>
     <h4>Lessons:</h4>
     <ul>
@@ -63,10 +68,7 @@
     </ul>
   </body>
 </div>
-<div class="bottomnav">
-  <a class="active" href="index.html">Home</a>
-  <a class="fade-in" href="lessons.html">Lessons</a>
-  <img class="icon" src="" style="width: 40px; margin-left:10px; height:40px;">
+<div class="lowNav">
+  <button onload="lessonsCapterLink();" onclick="goToCurrentChapter();">Start Lessons &rarr;</button>
 </div>
-
 </html>
