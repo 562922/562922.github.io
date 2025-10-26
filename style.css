@@ -145,3 +145,29 @@ h2 {
   color: black;
   font-size: 35px
 }
+
+.bottomnav {
+  background-color: #333;
+  overflow: Show;
+  height: 48px;
+}
+.bottomnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding-bottom: 14px 5px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.bottomnav a:hover {
+  background-color: #ddd;
+  transition: background-color .25s ease-in-out;
+  color: black;
+  transition: color .25s ease-in-out;
+}
+.bottomnav a.active {
+  background-color: #00ff51;
+  color: white;
+}
