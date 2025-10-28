@@ -1,6 +1,8 @@
 html, body, p, a, h1, h2, h3, h4, h5, h6, .parallax {
-  margin: 0px;
+  margin: 5em;
   color: black;
+  font-family: source-code-pro, monospace;
+  padding: 5em;
 }
 
 .topnav {
@@ -17,6 +19,9 @@ html, body, p, a, h1, h2, h3, h4, h5, h6, .parallax {
   font-size: 17px;
 }
 
+li a {
+  text-decoration: underline;
+}
 
 .topnav a:hover {
   background-color: white;
