@@ -1,8 +1,7 @@
 html, body, p, a, h1, h2, h3, h4, h5, h6, .parallax {
-  margin: 5em;
+  margin: 5px;
   color: black;
   font-family: source-code-pro, monospace;
-  padding: 5em;
 }
 
 .topnav {
