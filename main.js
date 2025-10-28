@@ -1,14 +1,17 @@
 function saveCurrentLesson() {
     const currentPage = window.location.pathname.split('/').pop();
     const lessonId = currentPage.split('.')[0];
-    const completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
-
-    // Add the current chapter ID to the list if it's not already there
-    if (!completedLessons.includes(lessonId)) {
-        completedLessons.push(lessonId);
+    if (!currentPage.startsWith('les')) {
+        return; // Not a lesson page
+    } else if (currentPage.startsWith('les')) {
+        const completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
+        if (!completedLessons.includes(lessonId)) {
+            completedLessons.push(lessonId);
+            // Add the current chapter ID to the list if it's not already there
+        }
     }
-
 }
+
 function goToCurrentChapter() {
     const completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
     let currentLesson;
@@ -40,12 +43,12 @@ function goToNextLesson() {
 
 
 function homepageCapterLink() {
-    // Hide the link if the current page is chap1.html
+    // Hide the link if the current page is les1.html
     if (currentLesson === 'les1.html') {
-        homepageLesson.style.display = 'none';
+        homepageLesson.style.display = 'hidden';
     } else {
         // Otherwise, make sure it's visible and points to the right place
-        homepageLesson.style.display = 'none';
+        homepageLesson.style.display = 'show';
         homepageLesson.onclick = goToCurrentChapter;
     }
 }
@@ -57,3 +60,36 @@ function lessonsCapterLink() {
         this.innerHTML = 'Continue Lessons';
     }
 }
+
+
+function goToPastLesson() {
+    const completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
+    let pastLesson;
+
+    if (completedLessons.length <= 1) {
+        pastLesson = 'les1.html';
+    } else {
+        const lastCompletedLesson = completedLessons[completedLessons.length - 1];
+        const lessonNumber = parseInt(lastCompletedLesson.replace('les', ''), 10);
+        pastLesson = `les${lessonNumber - 1}.html`;
+    }
+
+    window.location.href = `Lessons/${pastLesson}`;
+}
+
+function goToNextLesson() {
+    const completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
+    let nextLesson;
+
+    if (completedLessons.length === 0) {
+        nextLesson = 'les1.html';
+    } else {
+        const lastCompletedLesson = completedLessons[completedLessons.length - 1];
+        const lessonNumber = parseInt(lastCompletedLesson.replace('les', ''), 10);
+        nextLesson = `les${lessonNumber + 1}.html`;
+    }
+
+    window.location.href = `Lessons/${nextLesson}`;
+}
+window.onload = saveCurrentLesson;
+
