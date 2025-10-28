@@ -45,10 +45,10 @@ function goToNextLesson() {
 function homepageCapterLink() {
     // Hide the link if the current page is les1.html
     if (currentLesson === 'les1.html') {
-        homepageLesson.style.display = 'hidden';
+        homepageLesson.hidden = 'true';
     } else {
         // Otherwise, make sure it's visible and points to the right place
-        homepageLesson.style.display = 'show';
+        homepageLesson.hidden = 'false';
         homepageLesson.onclick = goToCurrentChapter;
     }
 }
