@@ -131,3 +131,18 @@ button.dropbtn {font-family: sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
 }
+#plexusCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place canvas behind other content */
+  background-color: #1a1a1a; /* Dark background color */
+}
+
+.content {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}

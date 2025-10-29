@@ -93,3 +93,77 @@ function goToNextLesson() {
 }
 window.onload = saveCurrentLesson;
 
+
+//plexus code
+const canvas = document.getElementById('plexusCanvas');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+const numParticles = 100;
+const maxDistance = 100; // Max distance for connecting lines
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+class Particle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = Math.random() * 2 - 1; // Random velocity x (-1 to 1)
+        this.vy = Math.random() * 2 - 1; // Random velocity y (-1 to 1)
+        this.radius = Math.random() * 2 + 1; // Random radius
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off edges
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fill();
+    }
+}
+
+function init() {
+    resizeCanvas();
+    for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < maxDistance) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${1 - (distance / maxDistance)})`;
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+window.addEventListener('resize', resizeCanvas);
+init();
+animate();
